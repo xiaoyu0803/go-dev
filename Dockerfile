@@ -81,7 +81,7 @@ RUN curl -L https://golang.org/dl/go${GO_VERSION}.${TARGETOS}-${TARGETARCH}.tar.
   && apt-get update && apt-get -f -y install 
 RUN if [ "${TARGETARCH}"="arm64" ]; \
     then \
-        curl -sSL -o /tmp/protoc.zip https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-aarch64.zip \
+        curl -sSL -o /tmp/protoc.zip https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-aarch_64.zip \
   		  && unzip /tmp/protoc.zip 'bin/protoc' -d /usr/local \
  		    && rm /tmp/protoc.zip \
         && curl -fsSLO https://download.docker.com/linux/static/stable/aarch64/docker-${DOCKER_VERSION}.tgz \
