@@ -22,4 +22,5 @@ push: build
 	docker push ${IMAGE}
 
 test: build
+
 	${DEV_ENV_CMD} shellcheck $(SHELL_SCRIPTS)
