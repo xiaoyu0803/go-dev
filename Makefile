@@ -16,7 +16,7 @@ info:
 	@echo "IMAGE:    ${IMAGE}"
 
 build:
-	docker buildx build --platform=linux/amd64,linux/arm64 -t test:0.0.1
+	docker buildx build --platform=linux/amd64,linux/arm64 -t test:0.0.1 -f Dockerfile
 
 
 push: build
