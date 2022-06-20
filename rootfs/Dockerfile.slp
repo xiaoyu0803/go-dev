@@ -1,0 +1,27 @@
+FROM --platform=${BUILDPLATFORM} ubuntu
+ARG TARGETOS
+ARG TARGETARCH
+RUN  apt-get update && \
+    apt-get install -y unzip
+RUN if [ $TARGETARCH=="arm64" ]; \
+    then \
+        curl -sSL -o /tmp/protoc.zip https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-aarch64.zip \
+  		&& unzip /tmp/protoc.zip 'bin/protoc' -d /usr/local \
+ 		&& rm /tmp/protoc.zip \
+        && curl -fsSLO https://download.docker.com/linux/static/stable/aarch64/docker-${DOCKER_VERSION}.tgz \
+        && tar xzvf docker-${DOCKER_VERSION}.tgz -C /usr/local/bin \
+        && chmod +x -R /usr/local/bin/docker \
+        && rm docker-${DOCKER_VERSION}.tgz \
+        && curl -sSL https://github.com/koalaman/shellcheck/releases/download/${SHELLCHECK_VERSION}/shellcheck-${SHELLCHECK_VERSION}.linux.aarch64.tar.xz \
+        | tar -vxJ -C /usr/local/bin --strip=1 ;\
+    else  \
+        curl -sSL -o /tmp/protoc.zip https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-x86_64.zip \
+  		&& unzip /tmp/protoc.zip 'bin/protoc' -d /usr/local \
+ 		&& rm /tmp/protoc.zip \
+        && curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz \
+        && tar xzvf docker-${DOCKER_VERSION}.tgz -C /usr/local/bin \
+        && chmod +x -R /usr/local/bin/docker \
+        && rm docker-${DOCKER_VERSION}.tgz \
+        && curl -sSL https://github.com/koalaman/shellcheck/releases/download/${SHELLCHECK_VERSION}/shellcheck-${SHELLCHECK_VERSION}.linux.x86_64.tar.xz \
+        | tar -vxJ -C /usr/local/bin --strip=1 ;\
+    fi 
