@@ -16,7 +16,8 @@ info:
 	@echo "IMAGE:    ${IMAGE}"
 
 build:
-	docker build -t ${IMAGE} rootfs
+	docker buildx build --platform=linux/amd64,linux/arm64 -t test:${IMAGE_VERSION}
+
 
 push: build
 	docker push ${IMAGE}
