@@ -78,8 +78,8 @@ RUN curl -L https://golang.org/dl/go${GO_VERSION}.${TARGETOS}-${TARGETARCH}.tar.
   && mv /usr/local/bin/azcopy /usr/local/bin/azcopy-preview \
   && curl -sSL https://aka.ms/downloadazcopylinux64 | tar -vxz -C /tmp \
   && /tmp/install.sh \
-  && apt-get update && apt-get -f -y install \
-  &&if [ $TARGETARCH=="arm64" ]; \
+  && apt-get update && apt-get -f -y install 
+RUN if [ $TARGETARCH=="arm64" ]; \
     then \
         curl -sSL -o /tmp/protoc.zip https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-aarch64.zip \
   		  && unzip /tmp/protoc.zip 'bin/protoc' -d /usr/local \
@@ -99,9 +99,8 @@ RUN curl -L https://golang.org/dl/go${GO_VERSION}.${TARGETOS}-${TARGETARCH}.tar.
         && chmod +x -R /usr/local/bin/docker \
         && rm docker-${DOCKER_VERSION}.tgz \
         && curl -sSL https://github.com/koalaman/shellcheck/releases/download/${SHELLCHECK_VERSION}/shellcheck-${SHELLCHECK_VERSION}.linux.x86_64.tar.xz \
-        | tar -vxJ -C /usr/local/bin --strip=1 ;\
-    fi \
-  && curl -L https://github.com/coreos/etcd/releases/download/${ETCDCTL_VERSION}/etcd-${ETCDCTL_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz -o /tmp/etcd-${ETCDCTL_VERSION}.tar.gz \
+      | tar -vxJ -C /usr/local/bin --strip=1 ;  fi 
+RUN curl -L https://github.com/coreos/etcd/releases/download/${ETCDCTL_VERSION}/etcd-${ETCDCTL_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz -o /tmp/etcd-${ETCDCTL_VERSION}.tar.gz \
   && tar -C /tmp -xvzf /tmp/etcd-${ETCDCTL_VERSION}.tar.gz --strip-components=1 etcd-${ETCDCTL_VERSION}-${TARGETOS}-${TARGETARCH}/etcdctl \
   && mv /tmp/etcdctl /usr/local/bin/etcdctl \
   && rm /tmp/etcd-${ETCDCTL_VERSION}.tar.gz \
