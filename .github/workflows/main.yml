@@ -12,7 +12,7 @@ jobs:
           - name: Build and publish image
             uses: ilteoood/docker_buildx@master
             with:
-              publish: true
+              publish: false
               imageName: test
               platform: linux/amd64,linux/arm64
               tag: latest # 默认latest，可以针对平台，修改tag
