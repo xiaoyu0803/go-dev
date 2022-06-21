@@ -7,7 +7,7 @@ LABEL name="deis-go-dev" \
 ENV ANSIBLE_VERSION=5.9.0 \
   AZCLI_VERSION=2.33.1 \
   DOCKER_VERSION=20.10.2 \
-  ETCDCTL_VERSION=v3.5.1 \
+  ETCDCTL_VERSION=v3.5.4 \
   GO_VERSION=1.17.11 \
   GOLANGCI_LINT_VERSION=v1.45.2 \
   GOSS_VERSION=v0.3.16 \
@@ -99,7 +99,7 @@ RUN if [ "${TARGETARCH}"="arm64" ]; \
         && rm docker-${DOCKER_VERSION}.tgz \
         && curl -sSL https://github.com/koalaman/shellcheck/releases/download/${SHELLCHECK_VERSION}/shellcheck-${SHELLCHECK_VERSION}.linux.x86_64.tar.xz|tar -vxJ -C /usr/local/bin --strip=1 ; fi 
 RUN curl -L https://github.com/coreos/etcd/releases/download/${ETCDCTL_VERSION}/etcd-${ETCDCTL_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz -o /tmp/etcd-${ETCDCTL_VERSION}.tar.gz \
-  && tar -C /tmp -xvzf /tmp/etcd-${ETCDCTL_VERSION}.tar.gz --strip-components=1 etcd-${ETCDCTL_VERSION}-${TARGETOS}-${TARGETARCH}/etcdctl \
+   | tar -C /tmp -xvzf /tmp/etcd-${ETCDCTL_VERSION}.tar.gz --strip-components=1 etcd-${ETCDCTL_VERSION}-${TARGETOS}-${TARGETARCH}/etcdctl \
   && mv /tmp/etcdctl /usr/local/bin/etcdctl \
   && rm /tmp/etcd-${ETCDCTL_VERSION}.tar.gz \
   && go get -u -v \
