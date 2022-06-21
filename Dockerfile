@@ -6,7 +6,7 @@ LABEL name="deis-go-dev" \
 ENV ANSIBLE_VERSION=5.9.0 \
   AZCLI_VERSION=2.33.1 \
   DOCKER_VERSION=20.10.2 \
-  ETCDCTL_VERSION=v3.1.8 \
+  ETCDCTL_VERSION=v3.4.8 \
   GO_VERSION=1.17.11 \
   GOLANGCI_LINT_VERSION=v1.45.2 \
   GOSS_VERSION=v0.3.16 \
@@ -82,7 +82,7 @@ RUN \
   && tar xzvf docker-${DOCKER_VERSION}.tgz -C /usr/local/bin \
   && chmod +x -R /usr/local/bin/docker \
   && rm docker-${DOCKER_VERSION}.tgz \
-  && curl -L https://github.com/coreos/etcd/releases/download/${ETCDCTL_VERSION}/etcd-${ETCDCTL_VERSION}-linux-arm64.tar.gz -o /tmp/etcd-${ETCDCTL_VERSION}.tar.gz \
+  && curl -L https://github.com/etcd-io/etcd/releases/download/${ETCDCTL_VERSION}/etcd-${ETCDCTL_VERSION}-linux-arm64.tar.gz -o /tmp/etcd-${ETCDCTL_VERSION}.tar.gz \
   && tar -C /tmp -xvzf /tmp/etcd-${ETCDCTL_VERSION}.tar.gz --strip-components=1 etcd-${ETCDCTL_VERSION}-linux-arm64/etcdctl \
   && mv /tmp/etcdctl /usr/local/bin/etcdctl \
   && rm /tmp/etcd-${ETCDCTL_VERSION}.tar.gz \

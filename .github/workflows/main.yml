@@ -16,5 +16,5 @@ jobs:
             with:
               publish: false
               imageName: test
-              platform:linux/arm64 # linux/amd64,
+              platform: linux/arm64 # linux/amd64,
               tag: latest # 默认latest，可以针对平台，修改tag
