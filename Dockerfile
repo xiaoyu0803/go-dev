@@ -69,7 +69,7 @@ RUN \
     then \
         curl -sSL -o /tmp/protoc.zip https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-aarch_64.zip \
   		  && unzip /tmp/protoc.zip 'bin/protoc' -d /usr/local \
- 		    && rm /tmp/protoc.zip \
+ 		    && rm /tmp/protoc.zip ;\
     else  \
         curl -sSL -o /tmp/protoc.zip https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-x86_64.zip \
   		  && unzip /tmp/protoc.zip 'bin/protoc' -d /usr/local \
@@ -91,7 +91,7 @@ RUN \
       curl -fsSLO https://download.docker.com/linux/static/stable/aarch64/docker-${DOCKER_VERSION}.tgz \
         && tar xzvf docker-${DOCKER_VERSION}.tgz -C /usr/local/bin \
         && chmod +x -R /usr/local/bin/docker \
-        && rm docker-${DOCKER_VERSION}.tgz \
+        && rm docker-${DOCKER_VERSION}.tgz ;\
     else  \
       curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz \
         && tar xzvf docker-${DOCKER_VERSION}.tgz -C /usr/local/bin \
