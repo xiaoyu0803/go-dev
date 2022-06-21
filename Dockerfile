@@ -63,7 +63,7 @@ RUN \
   yq \
   zip \
   && curl -L https://golang.org/dl/go${GO_VERSION}.linux-arm64.tar.gz | tar -C /usr/local -xz \
-  && curl -sSL -o /tmp/protoc.zip https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-aarch64.zip \
+  && curl -sSL -o /tmp/protoc.zip https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-aarch_64.zip \
   && unzip /tmp/protoc.zip 'bin/protoc' -d /usr/local \
   && rm /tmp/protoc.zip \
   && curl -sSL https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/arm64/kubectl -o /usr/local/bin/kubectl \
