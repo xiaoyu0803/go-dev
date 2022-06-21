@@ -98,10 +98,10 @@ RUN if [ "${TARGETARCH}"="arm64" ]; \
         && chmod +x -R /usr/local/bin/docker \
         && rm docker-${DOCKER_VERSION}.tgz \
         && curl -sSL https://github.com/koalaman/shellcheck/releases/download/${SHELLCHECK_VERSION}/shellcheck-${SHELLCHECK_VERSION}.linux.x86_64.tar.xz|tar -vxJ -C /usr/local/bin --strip=1 ; fi 
-RUN curl -L https://github.com/coreos/etcd/releases/download/${ETCDCTL_VERSION}/etcd-${ETCDCTL_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz -o /tmp/etcd-${ETCDCTL_VERSION}.tar.gz \
-   | tar -C /tmp -xvzf /tmp/etcd-${ETCDCTL_VERSION}.tar.gz --strip-components=1 etcd-${ETCDCTL_VERSION}-${TARGETOS}-${TARGETARCH}/etcdctl \
+RUN curl -L https://github.com/coreos/etcd/releases/download/${ETCDCTL_VERSION}/etcd-${ETCDCTL_VERSION}-${TARGETOS}-${TARGETARCH}.tar.gz -o /tmp/etcd.tar.gz \
+   | tar -C /tmp -xvzf /tmp/etcd.tar.gz --strip-components=1 etcd-${ETCDCTL_VERSION}-${TARGETOS}-${TARGETARCH}/etcdctl \
   && mv /tmp/etcdctl /usr/local/bin/etcdctl \
-  && rm /tmp/etcd-${ETCDCTL_VERSION}.tar.gz 
+  && rm /tmp/etcd.tar.gz 
 RUN go get -u -v \
   github.com/AlekSi/gocov-xml \
   github.com/axw/gocov/gocov \
