@@ -9,7 +9,7 @@ ENV ANSIBLE_VERSION=5.9.0 \
   ETCDCTL_VERSION=v3.4.8 \
   GO_VERSION=1.17.11 \
   GOLANGCI_LINT_VERSION=v1.45.2 \
-  GOSS_VERSION=v0.3.16 \
+  GOSS_VERSION=v0.3.18 \
   HELM_VERSION=3.6.2 \
   KUBECTL_VERSION=v1.21.3 \
   PACKER_VERSION=1.7.3 \
@@ -101,7 +101,7 @@ RUN \
   | tar -vxJ -C /usr/local/bin --strip=1 \
   && curl -sSL https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_arm64.zip -o /tmp/packer.zip \
   && unzip /tmp/packer.zip -d /usr/local/bin \
-  && curl -o /usr/local/bin/shfmt -sSL https://github.com/mvdan/sh/releases/download/v{SHFMT_VERSION}/shfmt_v{SHFMT_VERSION}_linux_arm64 \
+  && curl -o /usr/local/bin/shfmt -sSL https://github.com/mvdan/sh/releases/download/v${SHFMT_VERSION}/shfmt_v${SHFMT_VERSION}_linux_arm64 \
   && chmod +x /usr/local/bin/shfmt \
   && curl -L "https://github.com/aelsabbahy/goss/releases/download/${GOSS_VERSION}/goss-linux-arm64" -o /usr/local/bin/goss \
   && chmod +rx /usr/local/bin/goss \
