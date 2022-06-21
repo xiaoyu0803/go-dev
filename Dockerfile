@@ -97,7 +97,7 @@ RUN \
   github.com/mitchellh/gox \
   github.com/onsi/ginkgo/ginkgo \
   && curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b ${GOPATH}/bin ${GOLANGCI_LINT_VERSION} \
-  && curl -sSL https://github.com/koalaman/shellcheck/releases/download/${SHELLCHECK_VERSION}/shellcheck-${SHELLCHECK_VERSION}.linux.aarch_64.tar.xz \
+  && curl -sSL https://github.com/koalaman/shellcheck/releases/download/${SHELLCHECK_VERSION}/shellcheck-${SHELLCHECK_VERSION}.linux.aarch64.tar.xz \
   | tar -vxJ -C /usr/local/bin --strip=1 \
   && curl -sSL https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_arm64.zip -o /tmp/packer.zip \
   && unzip /tmp/packer.zip -d /usr/local/bin \
