@@ -88,12 +88,12 @@ RUN \
   && apt-get update && apt-get -f -y install \
   && if [ "${TARGETARCH}"="arm64" ]; \
     then \
-         curl -fsSLO https://download.docker.com/linux/static/stable/aarch64/docker-${DOCKER_VERSION}.tgz \
+      curl -fsSLO https://download.docker.com/linux/static/stable/aarch64/docker-${DOCKER_VERSION}.tgz \
         && tar xzvf docker-${DOCKER_VERSION}.tgz -C /usr/local/bin \
         && chmod +x -R /usr/local/bin/docker \
         && rm docker-${DOCKER_VERSION}.tgz \
     else  \
-        && curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz \
+      curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz \
         && tar xzvf docker-${DOCKER_VERSION}.tgz -C /usr/local/bin \
         && chmod +x -R /usr/local/bin/docker \
         && rm docker-${DOCKER_VERSION}.tgz ;fi\
@@ -112,8 +112,11 @@ RUN \
   github.com/mitchellh/gox \
   github.com/onsi/ginkgo/ginkgo \
   && curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b ${GOPATH}/bin ${GOLANGCI_LINT_VERSION} \
-  && curl -sSL https://github.com/koalaman/shellcheck/releases/download/${SHELLCHECK_VERSION}/shellcheck-${SHELLCHECK_VERSION}.${TARGETOS}.${TARGETARCH}.tar.xz \
-  | tar -vxJ -C /usr/local/bin --strip=1 \
+  && if [ "${TARGETARCH}"="arm64" ]; \
+    then \
+        curl -sSL https://github.com/koalaman/shellcheck/releases/download/${SHELLCHECK_VERSION}/shellcheck-${SHELLCHECK_VERSION}.linux.aarch64.tar.xz|tar -vxJ -C /usr/local/bin --strip=1 ;\
+    else  \
+        curl -sSL https://github.com/koalaman/shellcheck/releases/download/${SHELLCHECK_VERSION}/shellcheck-${SHELLCHECK_VERSION}.linux.x86_64.tar.xz|tar -vxJ -C /usr/local/bin --strip=1 ; fi \
   && curl -sSL https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_${TARGETOS}_${TARGETARCH}.zip -o /tmp/packer.zip \
   && unzip /tmp/packer.zip -d /usr/local/bin \
   && curl -o /usr/local/bin/shfmt -sSL https://github.com/mvdan/sh/releases/download/v{SHFMT_VERSION}/shfmt_v{SHFMT_VERSION}_${TARGETOS}_${TARGETARCH} \
